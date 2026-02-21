@@ -8,14 +8,14 @@
 body{
 background:#0b0e11;
 color:white;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 padding:20px;
 }
 
 input{
 width:100%;
-padding:12px;
-margin:6px 0;
+padding:14px;
+margin:7px 0;
 border-radius:6px;
 border:none;
 background:#1e2329;
@@ -25,26 +25,35 @@ font-size:16px;
 
 button{
 width:100%;
-padding:14px;
+padding:15px;
 background:#0ecb81;
 border:none;
 border-radius:8px;
 font-size:18px;
 margin-top:10px;
+font-weight:bold;
 }
 
-.card{
-margin-top:30px;
-display:none;
+.container{display:none;margin-top:35px;}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
 }
 
-.row{display:flex;justify-content:space-between;margin-top:25px;}
-.gray{color:#848e9c;}
+.left h1{margin:0;font-size:32px;}
 .green{color:#0ecb81;}
+.gray{color:#848e9c;}
 .red{color:#f6465d;}
-.big{font-size:34px;font-weight:bold;}
+.pnl{font-size:36px;font-weight:bold;margin-top:5px;}
 
-.top{display:flex;justify-content:space-between;align-items:center;margin-top:25px;}
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:35px;
+}
 </style>
 </head>
 
@@ -52,29 +61,29 @@ display:none;
 
 <h2>Futures Generator 😈</h2>
 
-<input id="coin" placeholder="Coin (BTC)">
+<input id="coin" placeholder="Coin (ENSO)">
 <input id="entry" placeholder="Entry Price">
 <input id="exit" placeholder="Mark Price">
 <input id="qty" placeholder="Quantity">
 <input id="lev" placeholder="Leverage">
 
-<button onclick="gen()">Generate Profit</button>
+<button onclick="generate()">Generate Profit</button>
 
-<div id="result" class="card">
+<div id="box" class="container">
 
-<div class="top">
-<div>
+<div class="header">
+<div class="left">
 <h1 id="pair"></h1>
 <div class="green">Long &nbsp; Cross <span id="levshow"></span>x</div>
 </div>
 
-<div>
+<div style="text-align:right">
 <div class="gray">Unrealized P&L (USDT)</div>
-<div id="pnl" class="big green"></div>
+<div id="pnl" class="pnl green"></div>
 </div>
 </div>
 
-<div class="row">
+<div class="grid">
 <div>
 <div class="gray">Quantity</div>
 <div id="qtyshow"></div>
@@ -99,7 +108,7 @@ display:none;
 </div>
 
 <script>
-function gen(){
+function generate(){
 let coin=document.getElementById("coin").value.toUpperCase();
 let entry=parseFloat(document.getElementById("entry").value);
 let exit=parseFloat(document.getElementById("exit").value);
@@ -118,7 +127,7 @@ document.getElementById("entryshow").innerHTML=entry;
 document.getElementById("exitshow").innerHTML=exit;
 document.getElementById("liq").innerHTML=liq.toFixed(4);
 
-document.getElementById("result").style.display="block";
+document.getElementById("box").style.display="block";
 }
 </script>
 
