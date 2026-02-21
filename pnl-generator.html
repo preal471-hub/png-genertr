@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Futures PnL Generator</title>
+
+<style>
+body{
+background:#0b0e11;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:6px 0;
+border-radius:6px;
+border:none;
+background:#1e2329;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#0ecb81;
+border:none;
+border-radius:8px;
+font-size:18px;
+margin-top:10px;
+}
+
+.card{
+margin-top:25px;
+padding:20px;
+background:#0b0e11;
+border-radius:10px;
+display:none;
+}
+
+.green{color:#0ecb81;}
+.red{color:#f6465d;}
+.gray{color:#848e9c;}
+.big{font-size:32px;font-weight:bold;}
+.row{display:flex;justify-content:space-between;margin-top:20px;}
+</style>
+</head>
+
+<body>
+
+<h2>Binance Futures Generator 😈</h2>
+
+<input id="coin" placeholder="Coin (BTC)">
+<input id="entry" placeholder="Entry Price">
+<input id="exit" placeholder="Mark Price">
+<input id="qty" placeholder="Quantity">
+<input id="lev" placeholder="Leverage">
+
+<button onclick="generate()">Generate Profit</button>
+
+<div id="result" class="card">
+<h1 id="pair"></h1>
+<div class="green">Long Cross <span id="levshow"></span>x</div>
+
+<div class="gray">Unrealized P&L (USDT)</div>
+<div id="pnl" class="big green"></div>
+
+<div class="row">
+<div>
+<div class="gray">Quantity</div>
+<div id="qtyshow"></div>
+</div>
+<div>
+<div class="gray">Entry Price</div>
+<div id="entryshow"></div>
+</div>
+</div>
+
+<div class="row">
+<div>
+<div class="gray">Mark Price</div>
+<div id="exitshow"></div>
+</div>
+<div>
+<div class="gray">Est. Liq Price</div>
+<div id="liq" class="red"></div>
+</div>
+</div>
+
+</div>
+
+<script>
+function generate(){
+let coin=document.getElementById("coin").value.toUpperCase();
+let entry=parseFloat(document.getElementById("entry").value);
+let exit=parseFloat(document.getElementById("exit").value);
+let qty=parseFloat(document.getElementById("qty").value);
+let lev=parseFloat(document.getElementById("lev").value);
+
+let pnl=(exit-entry)*qty*lev;
+let roi=((exit-entry)/entry)*100*lev;
+let liq=entry*(1-1/lev);
+
+document.getElementById("pair").innerHTML=coin+"USDT";
+document.getElementById("levshow").innerHTML=lev;
+document.getElementById("pnl").innerHTML=pnl.toFixed(2)+" ("+roi.toFixed(2)+"%)";
+document.getElementById("qtyshow").innerHTML=qty;
+document.getElementById("entryshow").innerHTML=entry;
+document.getElementById("exitshow").innerHTML=exit;
+document.getElementById("liq").innerHTML=liq.toFixed(4);
+
+document.getElementById("result").style.display="block";
+}
+</script>
+
+</body>
+</html>
