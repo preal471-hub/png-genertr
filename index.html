@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Futures PnL Generator</title>
+<title>Binance Futures</title>
 
 <style>
 body{
@@ -34,24 +34,23 @@ margin-top:10px;
 }
 
 .card{
-margin-top:25px;
-padding:20px;
-background:#0b0e11;
-border-radius:10px;
+margin-top:30px;
 display:none;
 }
 
+.row{display:flex;justify-content:space-between;margin-top:25px;}
+.gray{color:#848e9c;}
 .green{color:#0ecb81;}
 .red{color:#f6465d;}
-.gray{color:#848e9c;}
-.big{font-size:32px;font-weight:bold;}
-.row{display:flex;justify-content:space-between;margin-top:20px;}
+.big{font-size:34px;font-weight:bold;}
+
+.top{display:flex;justify-content:space-between;align-items:center;margin-top:25px;}
 </style>
 </head>
 
 <body>
 
-<h2>Binance Futures Generator 😈</h2>
+<h2>Futures Generator 😈</h2>
 
 <input id="coin" placeholder="Coin (BTC)">
 <input id="entry" placeholder="Entry Price">
@@ -59,33 +58,40 @@ display:none;
 <input id="qty" placeholder="Quantity">
 <input id="lev" placeholder="Leverage">
 
-<button onclick="generate()">Generate Profit</button>
+<button onclick="gen()">Generate Profit</button>
 
 <div id="result" class="card">
-<h1 id="pair"></h1>
-<div class="green">Long Cross <span id="levshow"></span>x</div>
 
+<div class="top">
+<div>
+<h1 id="pair"></h1>
+<div class="green">Long &nbsp; Cross <span id="levshow"></span>x</div>
+</div>
+
+<div>
 <div class="gray">Unrealized P&L (USDT)</div>
 <div id="pnl" class="big green"></div>
+</div>
+</div>
 
 <div class="row">
 <div>
 <div class="gray">Quantity</div>
 <div id="qtyshow"></div>
 </div>
+
 <div>
 <div class="gray">Entry Price</div>
 <div id="entryshow"></div>
 </div>
-</div>
 
-<div class="row">
 <div>
 <div class="gray">Mark Price</div>
 <div id="exitshow"></div>
 </div>
+
 <div>
-<div class="gray">Est. Liq Price</div>
+<div class="gray">Estimated Liq. Price</div>
 <div id="liq" class="red"></div>
 </div>
 </div>
@@ -93,7 +99,7 @@ display:none;
 </div>
 
 <script>
-function generate(){
+function gen(){
 let coin=document.getElementById("coin").value.toUpperCase();
 let entry=parseFloat(document.getElementById("entry").value);
 let exit=parseFloat(document.getElementById("exit").value);
