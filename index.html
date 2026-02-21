@@ -54,6 +54,29 @@ grid-template-columns:repeat(4,1fr);
 gap:25px;
 margin-top:35px;
 }
+
+/* 📱 MOBILE RESPONSIVE FIX */
+@media(max-width:700px){
+
+.header{
+flex-direction:column;
+gap:15px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
+
+.pnl{
+font-size:28px;
+}
+
+.left h1{
+font-size:26px;
+}
+
+}
 </style>
 </head>
 
@@ -133,3 +156,4 @@ document.getElementById("box").style.display="block";
 
 </body>
 </html>
+
