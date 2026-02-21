@@ -9,13 +9,13 @@ body{
 background:#0b0e11;
 color:white;
 font-family:Arial, Helvetica, sans-serif;
-padding:20px;
+padding:18px;
 }
 
 input{
 width:100%;
 padding:14px;
-margin:7px 0;
+margin:6px 0;
 border-radius:6px;
 border:none;
 background:#1e2329;
@@ -34,7 +34,7 @@ margin-top:10px;
 font-weight:bold;
 }
 
-.container{display:none;margin-top:35px;}
+.container{display:none;margin-top:30px;}
 
 .header{
 display:flex;
@@ -51,31 +51,20 @@ align-items:flex-start;
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:25px;
-margin-top:35px;
+gap:20px;
+margin-top:30px;
 }
 
-/* 📱 MOBILE RESPONSIVE FIX */
+.label{color:#848e9c;font-size:14px;}
+.value{font-size:18px;margin-top:4px;}
+
+/* 📱 MOBILE PERFECT BINANCE STYLE */
 @media(max-width:700px){
-
-.header{
-flex-direction:column;
-gap:15px;
-}
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-gap:18px;
-}
-
-.pnl{
-font-size:28px;
-}
-
-.left h1{
-font-size:26px;
-}
-
+.left h1{font-size:24px;}
+.pnl{font-size:26px;}
+.grid{gap:10px;}
+.label{font-size:12px;}
+.value{font-size:15px;}
 }
 </style>
 </head>
@@ -108,23 +97,23 @@ font-size:26px;
 
 <div class="grid">
 <div>
-<div class="gray">Quantity</div>
-<div id="qtyshow"></div>
+<div class="label">Quantity</div>
+<div id="qtyshow" class="value"></div>
 </div>
 
 <div>
-<div class="gray">Entry Price</div>
-<div id="entryshow"></div>
+<div class="label">Entry Price</div>
+<div id="entryshow" class="value"></div>
 </div>
 
 <div>
-<div class="gray">Mark Price</div>
-<div id="exitshow"></div>
+<div class="label">Mark Price</div>
+<div id="exitshow" class="value"></div>
 </div>
 
 <div>
-<div class="gray">Estimated Liq. Price</div>
-<div id="liq" class="red"></div>
+<div class="label">Estimated Liq. Price</div>
+<div id="liq" class="value red"></div>
 </div>
 </div>
 
@@ -156,4 +145,3 @@ document.getElementById("box").style.display="block";
 
 </body>
 </html>
-
